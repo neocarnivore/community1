@@ -229,6 +229,13 @@
       white-space:pre-line;
     }
 
+.choice-note{
+  margin:-6px 0 12px;
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.6;
+}
+
     .field{
       display:grid;
       gap:8px;
@@ -529,7 +536,7 @@
             </div>
             <div class="done-kicker">送信完了</div>
             <h2>ありがとうございます</h2>
-            <p class="thankyou-secondary">ご回答ありがとうございました。<br>今後のコミュニティ運営の参考にさせていただきます。</p>
+            <p class="thankyou-secondary">ご回答いただきありがとうございました🙇<br>今後のコミュニティ運営の参考にさせていただきます。</p>
           </section>
         </div>
       </div>
@@ -538,7 +545,8 @@
         <div class="section">
           <div class="section-title">はじめに</div>
           <div class="privacy-card">
-            回答した内容が外部に共有されることはありません。運営の参考としてのみ利用させていただきます。
+            回答内容が外部に共有されることはありません。
+            運営の参考としてのみ利用させていただきます。
           </div>
         </div>
 
@@ -589,6 +597,7 @@
             <span class="req">必須</span>
             <span class="limit">3つまで選択可</span>
           </div>
+<div class="choice-note">より強く感じるものを選択してください</div>
 
           <div class="checks">
             <label class="check-item"><input type="checkbox" name="joinReason" value="肉食を安全に始めたい" />肉食を安全に始めたい</label>
@@ -615,6 +624,7 @@
             <span class="req">必須</span>
             <span class="limit">3つまで選択可</span>
           </div>
+<div class="choice-note">より強く感じるものを選択してください</div>
 
           <div class="checks">
             <label class="check-item"><input type="checkbox" name="wantedContent" value="エビデンス解説" />エビデンス解説</label>
@@ -642,6 +652,7 @@
             <span class="req">必須</span>
             <span class="limit">3つまで選択可</span>
           </div>
+<div class="choice-note">より強く感じるものを選択してください</div>
 
           <div class="checks">
             <label class="check-item"><input type="checkbox" name="currentProblems" value="食べ方・始め方" />食べ方・始め方</label>
@@ -664,7 +675,10 @@
         </div>
 
         <div class="section">
-          <div class="section-title">最後に</div>
+          <div class="section-title">
+  最後に
+  <span class="limit">任意</span>
+</div>
 
           <div class="field">
             <label class="inline-label">ねおに伝えておきたいこと / ご要望など</label>
@@ -688,7 +702,7 @@
       const CONFIG = {
         EMAILJS_PUBLIC_KEY: "QedlQxUXH2yDJJvjU",
         EMAILJS_SERVICE_ID: "service_sgac4or",
-        EMAILJS_TEMPLATE_ID: "template_v2ls78f",
+        EMAILJS_TEMPLATE_ID: "template_hmmrh9t",
         MAX_SELECT: 3
       };
 
