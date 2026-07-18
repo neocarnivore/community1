@@ -1,35 +1,35 @@
 {
-  "name": "ねおかーにぼあ™︎ アンケート",
-  "short_name": "アンケート",
-  "description": "Patreon参加者さま向けのアンケートフォーム。コミュニティ改善と今後のコンテンツ制作の参考にするための回答フォームです。",
+  "name": "肉食実践者コミュニティ アンケート",
+  "short_name": "肉食コミュニティ",
+  "description": "Discordコミュニティ参加者さま向けのアンケートフォームです。コミュニティ改善と今後の運営の参考にするための回答フォームです。",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#fff8f4",
-  "theme_color": "#ff8a3d",
+  "background_color": "#f8f7ff",
+  "theme_color": "#5447ff",
   "lang": "ja",
   "orientation": "portrait",
   "icons": [
     {
-      "src": "/icons/icon-192.png",
+      "src": "https://cdn.shopify.com/s/files/1/0993/1925/1258/files/54451F4E-D4EB-4E19-A142-87E8181DC193.png?v=1784342017",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/icons/icon-192-maskable.png",
+      "src": "https://cdn.shopify.com/s/files/1/0993/1925/1258/files/54451F4E-D4EB-4E19-A142-87E8181DC193.png?v=1784342017",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "/icons/icon-512.png",
+      "src": "https://cdn.shopify.com/s/files/1/0993/1925/1258/files/54451F4E-D4EB-4E19-A142-87E8181DC193.png?v=1784342017",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/icons/icon-512-maskable.png",
+      "src": "https://cdn.shopify.com/s/files/1/0993/1925/1258/files/54451F4E-D4EB-4E19-A142-87E8181DC193.png?v=1784342017",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
