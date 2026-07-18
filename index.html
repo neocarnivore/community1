@@ -2,40 +2,77 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>ねおかーにぼあ™︎ アンケートのお願い</title>
-  <meta name="description" content="Patreon参加者さま向けのアンケートフォームです。" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+
+  <title>肉食実践者コミュニティ アンケートのお願い</title>
+
+  <meta
+    name="description"
+    content="Discordコミュニティ参加者さま向けのアンケートフォームです。"
+  />
+
   <style>
     :root{
-      --bg:#fff8f4;
+      --bg:#f8f7ff;
       --card:#ffffff;
-      --text:#0f172a;
-      --muted:#6b7280;
-      --line:#f1dfd3;
-      --accent:#ff8a3d;
-      --accent-2:#e85d04;
-      --accent-soft:#fff1e8;
+      --text:#111427;
+      --muted:#737789;
+
+      --line:#e1defc;
+
+      --accent:#5447ff;
+      --accent-2:#3124e8;
+      --accent-light:#8b82ff;
+      --accent-soft:#f0efff;
+
       --danger:#dc2626;
-      --shadow:0 10px 28px rgba(66,24,2,.08);
+
+      --shadow:
+        0 10px 28px rgba(49,36,232,.09);
+
       --radius-lg:16px;
       --radius-md:10px;
       --radius-sm:8px;
     }
 
-    *{box-sizing:border-box}
+    *{
+      box-sizing:border-box;
+    }
 
-    html,body{
+    html,
+    body{
       margin:0;
       padding:0;
       width:100%;
       max-width:100%;
       overflow-x:hidden;
-      font-family:system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP","Segoe UI",sans-serif;
+
+      font-family:
+        system-ui,
+        -apple-system,
+        "Hiragino Kaku Gothic ProN",
+        "Noto Sans JP",
+        "Segoe UI",
+        sans-serif;
+
       color:var(--text);
+
       background:
-        radial-gradient(1200px 500px at 85% -10%, var(--accent-soft), transparent 60%),
-        radial-gradient(900px 500px at -10% 10%, #fff5ee, transparent 55%),
+        radial-gradient(
+          1200px 500px at 85% -10%,
+          rgba(139,130,255,.20),
+          transparent 60%
+        ),
+        radial-gradient(
+          900px 500px at -10% 10%,
+          rgba(211,207,255,.26),
+          transparent 55%
+        ),
         var(--bg);
+
       -webkit-text-size-adjust:100%;
       text-size-adjust:100%;
     }
@@ -51,15 +88,19 @@
       position:sticky;
       top:0;
       z-index:10;
+
+      -webkit-backdrop-filter:blur(10px);
       backdrop-filter:blur(10px);
-      background:rgba(255,248,244,.88);
-      border-bottom:1px solid rgba(0,0,0,.04);
+
+      background:rgba(248,247,255,.88);
+      border-bottom:1px solid rgba(49,36,232,.06);
     }
 
     .header-inner{
       max-width:920px;
       margin:0 auto;
       padding:16px 18px;
+
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -70,46 +111,78 @@
       display:flex;
       align-items:center;
       gap:10px;
+
       font-weight:700;
       letter-spacing:.02em;
       min-width:0;
     }
 
     .brand-mark{
-      width:32px;
-      height:32px;
-      border-radius:10px;
-      flex:0 0 32px;
+      width:42px;
+      height:42px;
+      border-radius:12px;
+      flex:0 0 42px;
+
       display:grid;
       place-items:center;
-      background:linear-gradient(135deg,#ffd4bf,#fff4ed);
-      border:1px solid rgba(255,138,61,.22);
-      box-shadow:0 2px 6px rgba(66,24,2,.12);
-      font-size:18px;
+
+      overflow:hidden;
+
+      background:
+        linear-gradient(
+          135deg,
+          #e3e0ff,
+          #f7f6ff
+        );
+
+      border:1px solid rgba(84,71,255,.22);
+
+      box-shadow:
+        0 3px 10px rgba(49,36,232,.14);
+    }
+
+    .brand-mark img{
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit:cover;
+    }
+
+    .brand-name{
+      line-height:1.35;
     }
 
     .brand-license{
       display:block;
-      font-size:10px;
-      color:var(--muted);
       margin-top:2px;
+
+      color:var(--muted);
+      font-size:10px;
       letter-spacing:.02em;
     }
 
     .pill-note{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:999px;
-  padding:8px 14px;
-  font-size:14px;
-  font-weight:700;
-  color:var(--accent-2);
-  white-space:nowrap;
-  flex:0 0 auto;
-}
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+
+      flex:0 0 auto;
+      white-space:nowrap;
+
+      padding:8px 14px;
+
+      color:var(--accent-2);
+      background:#fff;
+
+      border:1px solid var(--line);
+      border-radius:999px;
+
+      box-shadow:
+        0 4px 12px rgba(49,36,232,.06);
+
+      font-size:14px;
+      font-weight:700;
+    }
 
     .container{
       width:100%;
@@ -119,32 +192,57 @@
     }
 
     @media (min-width:920px){
-      .container{padding:0 18px;}
+      .container{
+        padding:0 18px;
+      }
     }
 
     .hero{
-      background:linear-gradient(135deg,#ffffff,#ffffff 55%,var(--accent-soft));
-      border:1px solid var(--line);
-      border-radius:var(--radius-lg);
-      padding:26px 22px 22px;
-      box-shadow:var(--shadow);
       position:relative;
       overflow:hidden;
+
+      padding:26px 22px 22px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ffffff,
+          #ffffff 55%,
+          var(--accent-soft)
+        );
+
+      border:1px solid var(--line);
+      border-radius:var(--radius-lg);
+
+      box-shadow:var(--shadow);
     }
 
     .hero::after{
       content:"";
+
       position:absolute;
       right:-120px;
       top:-140px;
+
       width:320px;
       height:320px;
+
       border-radius:50%;
-      background:radial-gradient(circle at 30% 30%, rgba(255,138,61,.18), transparent 65%);
+
+      background:
+        radial-gradient(
+          circle at 30% 30%,
+          rgba(84,71,255,.19),
+          transparent 65%
+        );
+
       pointer-events:none;
     }
 
     .hero-head{
+      position:relative;
+      z-index:1;
+
       display:flex;
       flex-direction:column;
       gap:6px;
@@ -154,22 +252,35 @@
       display:inline-flex;
       align-items:center;
       gap:8px;
-      padding:6px 10px;
-      background:rgba(255,241,232,.95);
-      border:1px solid rgba(255,138,61,.18);
-      border-radius:999px;
-      font-size:12px;
-      color:var(--accent-2);
-      font-weight:600;
-      margin-left:-2px;
-      transform:translateY(-2px);
+
       width:fit-content;
       max-width:100%;
+
+      margin-left:-2px;
+      padding:6px 10px;
+
+      transform:translateY(-2px);
+
+      color:var(--accent-2);
+
+      background:
+        rgba(240,239,255,.95);
+
+      border:
+        1px solid rgba(84,71,255,.18);
+
+      border-radius:999px;
+
+      font-size:12px;
+      font-weight:600;
     }
 
     .hero h1{
       margin:0 0 2px;
-      font-size:clamp(24px,3.6vw,31px);
+
+      font-size:
+        clamp(24px,3.6vw,31px);
+
       letter-spacing:.01em;
       line-height:1.2;
       white-space:pre-line;
@@ -177,7 +288,9 @@
 
     .hero p{
       margin:0 0 6px;
+
       color:var(--muted);
+
       line-height:1.6;
       font-size:14px;
       white-space:pre-line;
@@ -185,28 +298,37 @@
 
     form{
       margin-top:18px;
+      padding:10px 0 4px;
+
       background:var(--card);
+
       border:1px solid var(--line);
       border-radius:var(--radius-lg);
+
       box-shadow:var(--shadow);
-      padding:10px 0 4px;
     }
 
     .section{
       padding:18px 22px 6px;
-      border-top:1px dashed rgba(0,0,0,.06);
+
+      border-top:
+        1px dashed rgba(49,36,232,.10);
     }
 
-    .section:first-child{border-top:none}
+    .section:first-child{
+      border-top:none;
+    }
 
     .section-title{
       display:flex;
       align-items:baseline;
       gap:8px;
+      flex-wrap:wrap;
+
       margin:0 0 12px;
+
       font-size:14px;
       font-weight:700;
-      flex-wrap:wrap;
     }
 
     .section-title .req{
@@ -223,34 +345,45 @@
 
     .section-sub{
       margin:-6px 0 12px;
-      font-size:12px;
+
       color:var(--muted);
+
+      font-size:12px;
       line-height:1.6;
       white-space:pre-line;
     }
 
-.choice-note{
-  margin:-6px 0 12px;
-  font-size:12px;
-  color:var(--muted);
-  line-height:1.6;
-}
+    .choice-note{
+      margin:-6px 0 12px;
+
+      color:var(--muted);
+
+      font-size:12px;
+      line-height:1.6;
+    }
 
     .field{
       display:grid;
       gap:8px;
-      margin-bottom:14px;
+
       min-width:0;
+      margin-bottom:14px;
+    }
+
+    .profile-name-field{
+      margin-bottom:18px;
     }
 
     .grid-2{
       display:grid;
-      gap:16px;
       grid-template-columns:1fr;
+      gap:16px;
     }
 
     @media (min-width:720px){
-      .grid-2{grid-template-columns:1fr 1fr;}
+      .grid-2{
+        grid-template-columns:1fr 1fr;
+      }
     }
 
     .basic-pair{
@@ -276,25 +409,36 @@
     select,
     textarea{
       width:100%;
+      max-width:100%;
+
+      padding:12px;
+
+      color:var(--text);
+      background:#fff;
+
       border:1px solid var(--line);
       border-radius:var(--radius-md);
-      padding:12px 12px;
-      font-size:16px;
+
       outline:none;
-      background:#fff;
-      transition:border .15s ease, box-shadow .15s ease, background .15s ease;
-      max-width:100%;
+
+      font-family:inherit;
+      font-size:16px;
+
+      transition:
+        border .15s ease,
+        box-shadow .15s ease,
+        background .15s ease;
     }
 
     select{
-      font-size:16px;
       padding-right:44px;
+      font-size:16px;
     }
 
-#sex{
-  font-size:13px;
-  padding-right:18px;
-}
+    #sex{
+      padding-right:18px;
+      font-size:13px;
+    }
 
     textarea{
       min-height:110px;
@@ -303,51 +447,95 @@
 
     input::placeholder,
     textarea::placeholder{
-      color:#9aa3af;
+      color:#9da1b5;
     }
 
     input:focus,
     select:focus,
     textarea:focus{
-      border-color:rgba(255,138,61,.55);
-      box-shadow:0 0 0 4px rgba(255,138,61,.12);
-      background:#fffdfa;
+      border-color:
+        rgba(84,71,255,.58);
+
+      box-shadow:
+        0 0 0 4px rgba(84,71,255,.12);
+
+      background:#fdfdff;
     }
 
     .inline-label{
       display:block;
-      font-size:13px;
-      color:var(--muted);
+
       margin:0 0 6px;
+
+      color:var(--muted);
+
+      font-size:13px;
+    }
+
+    .inline-label-row{
+      display:flex;
+      align-items:baseline;
+      gap:7px;
+      flex-wrap:wrap;
+
+      margin:0 0 6px;
+    }
+
+    .inline-label-row .inline-label{
+      margin:0;
+    }
+
+    .inline-required{
+      color:var(--danger);
+      font-size:11.5px;
+      font-weight:700;
     }
 
     .checks{
       display:grid;
-      gap:10px 14px;
       grid-template-columns:1fr 1fr;
+      gap:10px 14px;
     }
 
     @media (min-width:720px){
-      .checks{grid-template-columns:repeat(3,minmax(0,1fr));}
+      .checks{
+        grid-template-columns:
+          repeat(3,minmax(0,1fr));
+      }
     }
 
     .check-item{
       display:flex;
       align-items:center;
       gap:8px;
-      padding:10px 10px;
+
+      min-width:0;
+      padding:10px;
+
+      color:var(--text);
+      background:#fff;
+
       border:1px solid var(--line);
       border-radius:var(--radius-sm);
-      background:#fff;
-      transition:border .15s ease, background .15s ease, transform .08s ease;
-      min-width:0;
+
       line-height:1.4;
       font-size:14px;
+
+      transition:
+        border .15s ease,
+        background .15s ease,
+        transform .08s ease,
+        box-shadow .15s ease;
     }
 
     .check-item:hover{
-      border-color:rgba(255,138,61,.35);
-      background:#fffaf7;
+      border-color:
+        rgba(84,71,255,.38);
+
+      background:#f9f8ff;
+
+      box-shadow:
+        0 4px 12px rgba(49,36,232,.05);
     }
 
     .check-item:active{
@@ -358,124 +546,235 @@
     input[type="radio"]{
       width:18px;
       height:18px;
-      accent-color:var(--accent);
       flex:0 0 18px;
+
+      accent-color:var(--accent);
     }
 
     .privacy-card{
-      border:1px solid rgba(255,138,61,.18);
-      background:linear-gradient(180deg,#fff,#fffaf7);
-      border-radius:14px;
-      padding:14px;
-      color:#556070;
-      line-height:1.7;
-      font-size:12.5px;
       margin-bottom:4px;
+      padding:14px;
+
+      color:#5f6478;
+
+      background:
+        linear-gradient(
+          180deg,
+          #fff,
+          #f9f8ff
+        );
+
+      border:
+        1px solid rgba(84,71,255,.18);
+
+      border-radius:14px;
+
+      font-size:12.5px;
+      line-height:1.7;
     }
 
     .hint{
-      font-size:11.5px;
       color:var(--muted);
+      font-size:11.5px;
       line-height:1.55;
     }
 
     .actions{
-      padding:18px 22px 22px;
       display:grid;
       gap:10px;
+
+      padding:18px 22px 22px;
     }
 
     .btn{
+      padding:14px;
+
       border:none;
       border-radius:14px;
-      padding:14px 14px;
+
+      font-family:inherit;
       font-size:16px;
       font-weight:700;
+
       cursor:pointer;
-      transition:transform .08s ease, filter .15s ease, box-shadow .15s ease;
+
+      transition:
+        transform .08s ease,
+        filter .15s ease,
+        box-shadow .15s ease;
     }
 
     .btn-primary{
-      background:linear-gradient(135deg,var(--accent),#ffb36b);
+      position:relative;
+      overflow:hidden;
+
       color:#fff;
-      box-shadow:0 10px 18px rgba(255,138,61,.22);
+
+      background:
+        linear-gradient(
+          115deg,
+          #2d20ff 0%,
+          #5447ff 22%,
+          #8b82ff 48%,
+          #766cff 72%,
+          #3124e8 100%
+        );
+
+      background-size:180% 180%;
+
+      box-shadow:
+        0 12px 24px rgba(45,32,255,.25),
+        0 4px 10px rgba(45,32,255,.15),
+        inset 0 1px 0 rgba(255,255,255,.30);
+
+      animation:
+        surveyButtonGradient
+        5s
+        ease-in-out
+        infinite;
     }
 
-    .btn-primary:hover{filter:brightness(1.02)}
-    .btn-primary:active{transform:translateY(1px)}
+    .btn-primary:hover{
+      filter:
+        brightness(1.04)
+        saturate(1.05);
+    }
+
+    .btn-primary:active{
+      transform:translateY(1px);
+    }
+
+    .btn-primary:focus-visible{
+      outline:
+        3px solid rgba(84,71,255,.25);
+
+      outline-offset:4px;
+    }
+
+    .btn-primary:disabled{
+      cursor:not-allowed;
+      opacity:.68;
+    }
+
+    @keyframes surveyButtonGradient{
+      0%,
+      100%{
+        background-position:0% 50%;
+      }
+
+      50%{
+        background-position:100% 50%;
+      }
+    }
 
     .error{
+      display:none;
+
+      margin-top:8px;
+
       color:var(--danger);
+
       font-size:11.5px;
       font-weight:600;
-      display:none;
-      margin-top:8px;
     }
 
     .thankyou-stage{
       position:relative;
+
       min-height:62vh;
       display:none;
       justify-content:center;
       align-items:flex-start;
+
       padding-top:10px;
     }
 
     .thankyou{
       width:100%;
       margin-top:10px;
-      background:linear-gradient(135deg,#ffffff,#ffffff 55%,var(--accent-soft));
+      padding:34px 22px 26px;
+
+      text-align:center;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ffffff,
+          #ffffff 55%,
+          var(--accent-soft)
+        );
+
       border:1px solid var(--line);
       border-radius:var(--radius-lg);
-      padding:34px 22px 26px;
+
       box-shadow:var(--shadow);
-      text-align:center;
     }
 
     .done-badge{
       width:54px;
       height:54px;
-      border-radius:50%;
       margin:0 auto 10px;
-      background:linear-gradient(135deg,#ffd9c5,#fff2ea);
-      border:1px solid rgba(255,138,61,.22);
+
       display:grid;
       place-items:center;
-      box-shadow:0 8px 16px rgba(66,24,2,.06);
+
+      border-radius:50%;
+
+      background:
+        linear-gradient(
+          135deg,
+          #5447ff,
+          #8b82ff
+        );
+
+      border:
+        1px solid rgba(84,71,255,.22);
+
+      box-shadow:
+        0 9px 20px rgba(49,36,232,.20);
     }
 
     .done-kicker{
+      margin-bottom:2px;
+
+      color:var(--accent-2);
+
       font-size:11.5px;
       font-weight:700;
-      color:var(--accent-2);
       letter-spacing:.08em;
-      margin-bottom:2px;
     }
 
     .thankyou h2{
       margin:0 0 12px;
-      font-size:clamp(22px,3.2vw,26px);
+
+      font-size:
+        clamp(22px,3.2vw,26px);
+
       letter-spacing:.01em;
     }
 
     .thankyou-secondary{
-      font-size:12.5px;
-      color:#556070;
-      font-weight:600;
       margin:0;
+
+      color:#5f6478;
+
+      font-size:12.5px;
+      font-weight:600;
       line-height:1.7;
     }
 
     footer{
       padding:10px 18px 26px;
+
       color:var(--muted);
+
       font-size:11px;
       text-align:center;
     }
 
     @media (max-width:560px){
       .header-inner{
-        padding:14px;
+        padding:12px 10px;
         gap:8px;
       }
 
@@ -483,9 +782,25 @@
         gap:8px;
       }
 
+      .brand-mark{
+        width:38px;
+        height:38px;
+        flex-basis:38px;
+        border-radius:11px;
+      }
+
+      .brand-name{
+        max-width:150px;
+        font-size:12px;
+      }
+
+      .brand-license{
+        font-size:9px;
+      }
+
       .pill-note{
-        font-size:10px;
-        padding:5px 8px;
+        padding:6px 8px;
+        font-size:9.5px;
       }
 
       .container{
@@ -500,444 +815,1556 @@
         padding:16px 14px 6px;
       }
 
+      .basic-pair{
+        grid-template-columns:1fr 1fr;
+        gap:14px;
+      }
+
       .checks{
         grid-template-columns:1fr 1fr;
       }
     }
+
+    @media (max-width:390px){
+      .brand-name{
+        max-width:126px;
+        font-size:11px;
+      }
+
+      .pill-note{
+        padding:6px 7px;
+        font-size:8.8px;
+      }
+
+      .basic-pair{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      .btn-primary{
+        animation:none;
+      }
+    }
   </style>
 </head>
+
 <body>
   <div class="page">
+
     <header>
       <div class="header-inner">
+
         <div class="brand">
-          <div class="brand-mark">🥩</div>
+          <div class="brand-mark">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0993/1925/1258/files/54451F4E-D4EB-4E19-A142-87E8181DC193.png?v=1784342017"
+              alt="肉食実践者コミュニティ"
+            />
+          </div>
+
           <div>
-            <div>ねおかーにぼあ™︎</div>
-            <span class="brand-license">アンケートのお願い</span>
+            <div class="brand-name">
+              肉食実践者コミュニティ
+            </div>
+
+            <span class="brand-license">
+              アンケートのお願い
+            </span>
           </div>
         </div>
-        <div class="pill-note">Patreon参加さまへ</div>
+
+        <div class="pill-note">
+          Discordコミュニティ
+        </div>
+
       </div>
     </header>
 
     <main class="container">
-      <section class="hero" id="heroSection">
+
+      <section
+        class="hero"
+        id="heroSection"
+      >
         <div class="hero-head">
-          <span class="meta">アンケートご協力のお願い</span>
+
+          <span class="meta">
+            アンケートご協力のお願い
+          </span>
+
           <h1>ご参加いただき
 ありがとうございます❤️</h1>
+
           <p>コミュニティの改善と、これから参加する方のために率直にお答えいただけるとうれしいです。</p>
+
         </div>
       </section>
 
-      <div class="thankyou-stage" id="thankYouStage">
+      <div
+        class="thankyou-stage"
+        id="thankYouStage"
+      >
         <div style="width:100%;">
-          <section class="thankyou" id="thankYouSection">
-            <div class="done-badge" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="26" height="26">
-                <path fill="#ffffff" d="M9.0 16.2l-3.5-3.5a1 1 0 0 1 1.4-1.4l2.8 2.8 7.3-7.3a1 1 0 1 1 1.4 1.4l-8.0 8.0a1 1 0 0 1-1.4 0z"/>
+
+          <section
+            class="thankyou"
+            id="thankYouSection"
+          >
+
+            <div
+              class="done-badge"
+              aria-hidden="true"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                width="26"
+                height="26"
+              >
+                <path
+                  fill="#ffffff"
+                  d="M9.0 16.2l-3.5-3.5a1 1 0 0 1 1.4-1.4l2.8 2.8 7.3-7.3a1 1 0 1 1 1.4 1.4l-8.0 8.0a1 1 0 0 1-1.4 0z"
+                />
               </svg>
             </div>
-            <div class="done-kicker">送信完了</div>
-            <h2>ありがとうございます</h2>
-            <p class="thankyou-secondary">ご回答いただきありがとうございました🙇<br>今後のコミュニティ運営の参考にさせていただきます。</p>
+
+            <div class="done-kicker">
+              送信完了
+            </div>
+
+            <h2>
+              ありがとうございます
+            </h2>
+
+            <p class="thankyou-secondary">
+              ご回答いただきありがとうございました🙇
+              <br>
+              今後のコミュニティ運営の参考にさせていただきます。
+            </p>
+
           </section>
+
         </div>
       </div>
 
-      <form id="surveyForm" novalidate>
+      <form
+        id="surveyForm"
+        novalidate
+      >
+
         <div class="section">
-          <div class="section-title">はじめに</div>
+
+          <div class="section-title">
+            はじめに
+          </div>
+
           <div class="privacy-card">
             回答内容が外部に共有されることはありません。
             運営の参考としてのみ利用させていただきます。
           </div>
+
         </div>
 
         <div class="section">
-          <div class="section-title">基本情報 <span class="req">必須</span></div>
+
+          <div class="section-title">
+            基本情報
+            <span class="req">
+              必須
+            </span>
+          </div>
+
+          <div class="field profile-name-field">
+
+            <div class="inline-label-row">
+              <label
+                class="inline-label"
+                for="profileName"
+              >
+                Discordコミュニティでのプロフィール名
+              </label>
+
+              <span class="inline-required">
+                必須
+              </span>
+            </div>
+
+            <input
+              id="profileName"
+              name="profileName"
+              type="text"
+              autocomplete="nickname"
+              placeholder="例：ねお"
+              required
+            />
+
+          </div>
 
           <div class="basic-pair">
+
             <div class="field">
-              <label class="inline-label">性別</label>
-              <select id="sex" name="sex" required>
-                <option value="">選択してください</option>
-                <option value="M">男性</option>
-                <option value="F">女性</option>
-                <option value="other">回答しない</option>
+
+              <label
+                class="inline-label"
+                for="sex"
+              >
+                性別
+              </label>
+
+              <select
+                id="sex"
+                name="sex"
+                required
+              >
+                <option value="">
+                  選択してください
+                </option>
+
+                <option value="M">
+                  男性
+                </option>
+
+                <option value="F">
+                  女性
+                </option>
+
+                <option value="other">
+                  回答しない
+                </option>
               </select>
+
             </div>
 
             <div class="field">
-              <label class="inline-label">年齢（歳）</label>
-              <input id="age" name="age" type="number" inputmode="numeric" step="1" min="12" max="99" placeholder="例：30" required />
+
+              <label
+                class="inline-label"
+                for="age"
+              >
+                年齢（歳）
+              </label>
+
+              <input
+                id="age"
+                name="age"
+                type="number"
+                inputmode="numeric"
+                step="1"
+                min="12"
+                max="99"
+                placeholder="例：30"
+                required
+              />
+
             </div>
+
           </div>
 
-          <div class="error" data-error-for="basic">基本情報を入力してください。</div>
+          <div
+            class="error"
+            data-error-for="basic"
+          >
+            プロフィール名・性別・年齢を入力してください。
+          </div>
+
         </div>
 
         <div class="section">
-          <div class="section-title">現在の食事について <span class="req">必須</span></div>
 
-          <div class="checks" style="grid-template-columns:1fr;">
-            <label class="check-item"><input type="radio" name="dietStatus" value="すでに肉食を実践している" />すでに肉食を実践している</label>
-            <label class="check-item"><input type="radio" name="dietStatus" value="ケト・低糖質を実践している" />ケト・低糖質を実践している</label>
-            <label class="check-item"><input type="radio" name="dietStatus" value="これから肉食を始めたい" />これから肉食を始めたい</label>
-            <label class="check-item"><input type="radio" name="dietStatus" value="まだ情報収集中" />まだ情報収集中</label>
-            <label class="check-item"><input type="radio" id="dietOtherRadio" name="dietStatus" value="その他" />その他</label>
+          <div class="section-title">
+            現在の食事について
+            <span class="req">
+              必須
+            </span>
           </div>
 
-          <div class="field" id="dietOtherWrap" style="display:none;margin-top:12px;">
-            <textarea id="dietOtherText" name="dietOtherText" placeholder="具体的に記述してください"></textarea>
+          <div
+            class="checks"
+            style="grid-template-columns:1fr;"
+          >
+
+            <label class="check-item">
+              <input
+                type="radio"
+                name="dietStatus"
+                value="すでに肉食を実践している"
+              />
+              すでに肉食を実践している
+            </label>
+
+            <label class="check-item">
+              <input
+                type="radio"
+                name="dietStatus"
+                value="ケト・低糖質を実践している"
+              />
+              ケト・低糖質を実践している
+            </label>
+
+            <label class="check-item">
+              <input
+                type="radio"
+                name="dietStatus"
+                value="これから肉食を始めたい"
+              />
+              これから肉食を始めたい
+            </label>
+
+            <label class="check-item">
+              <input
+                type="radio"
+                name="dietStatus"
+                value="まだ情報収集中"
+              />
+              まだ情報収集中
+            </label>
+
+            <label class="check-item">
+              <input
+                type="radio"
+                id="dietOtherRadio"
+                name="dietStatus"
+                value="その他"
+              />
+              その他
+            </label>
+
           </div>
 
-          <div class="error" data-error-for="dietStatus">現在の食事について選択してください。</div>
+          <div
+            class="field"
+            id="dietOtherWrap"
+            style="display:none;margin-top:12px;"
+          >
+            <textarea
+              id="dietOtherText"
+              name="dietOtherText"
+              placeholder="具体的に記述してください"
+            ></textarea>
+          </div>
+
+          <div
+            class="error"
+            data-error-for="dietStatus"
+          >
+            現在の食事について選択してください。
+          </div>
+
         </div>
 
         <div class="section">
+
           <div class="section-title">
             コミュニティに入った理由
-            <span class="req">必須</span>
-            <span class="limit">3つまで選択可</span>
+
+            <span class="req">
+              必須
+            </span>
+
+            <span class="limit">
+              3つまで選択可
+            </span>
           </div>
-<div class="choice-note">より強く感じるものを選択してください</div>
+
+          <div class="choice-note">
+            より強く感じるものを選択してください
+          </div>
 
           <div class="checks">
-            <label class="check-item"><input type="checkbox" name="joinReason" value="肉食を安全に始めたい" />肉食を安全に始めたい</label>
-            <label class="check-item"><input type="checkbox" name="joinReason" value="一緒に継続できる仲間が欲しい" />一緒に継続できる仲間が欲しい</label>
-            <label class="check-item"><input type="checkbox" name="joinReason" value="エビデンスや研究を学びたい" />エビデンスや研究を学びたい</label>
-            <label class="check-item"><input type="checkbox" name="joinReason" value="健康・美容・アンチエイジング" />健康・美容・アンチエイジング</label>
-            <label class="check-item"><input type="checkbox" name="joinReason" value="ダイエット・体型改善" />ダイエット・体型改善</label>
-            <label class="check-item"><input type="checkbox" name="joinReason" value="筋トレ・パフォーマンス向上" />筋トレ・パフォーマンス向上</label>
-            <label class="check-item"><input type="checkbox" name="joinReason" value="チャットできる環境が欲しい" />チャットできる環境が欲しい</label>
-            <label class="check-item"><input type="checkbox" name="joinReason" value="ねおの発信・考えに共感した" />ねおの発信・考えに共感した</label>
-            <label class="check-item"><input type="checkbox" id="joinOtherChk" name="joinReason" value="その他" />その他</label>
+
+            <label class="check-item">
+              <input
+                type="checkbox"
+                name="joinReason"
+                value="肉食を安全に始めたい"
+              />
+              肉食を安全に始めたい
+            </label>
+
+            <label class="check-item">
+              <input
+                type="checkbox"
+                name="joinReason"
+                value="一緒に継続できる仲間が欲しい"
+              />
+              一緒に継続できる仲間が欲しい
+            </label>
+
+            <label class="check-item">
+              <input
+                type="checkbox"
+                name="joinReason"
+                value="エビデンスや研究を学びたい"
+              />
+              エビデンスや研究を学びたい
+            </label>
+
+            <label class="check-item">
+              <input
+                type="checkbox"
+                name="joinReason"
+                value="健康・美容・アンチエイジング"
+              />
+              健康・美容・アンチエイジング
+            </label>
+
+            <label class="check-item">
+              <input
+                type="checkbox"
+                name="joinReason"
+                value="ダイエット・体型改善"
+              />
+              ダイエット・体型改善
+            </label>
+
+            <label class="check-item">
+              <input
+                type="checkbox"
+                name="joinReason"
+                value="筋トレ・パフォーマンス向上"
+              />
+              筋トレ・パフォーマンス向上
+            </label>
+
+            <label class="check-item">
+              <input
+                type="checkbox"
+                name="joinReason"
+                value="チャットできる環境が欲しい"
+              />
+              チャットできる環境が欲しい
+            </label>
+
+            <label class="check-item">
+              <input
+                type="checkbox"
+                name="joinReason"
+                value="ねおの発信・考えに共感した"
+              />
+              ねおの発信・考えに共感した
+            </label>
+
+            <label class="check-item">
+              <input
+                type="checkbox"
+                id="joinOtherChk"
+                name="joinReason"
+                value="その他"
+              />
+              その他
+            </label>
+
           </div>
 
-          <div class="field" id="joinOtherWrap" style="display:none;margin-top:12px;">
-            <textarea id="joinOtherText" name="joinOtherText" placeholder="具体的に記述してください"></textarea>
+          <div
+            class="field"
+            id="joinOtherWrap"
+            style="display:none;margin-top:12px;"
+          >
+            <textarea
+              id="joinOtherText"
+              name="joinOtherText"
+              placeholder="具体的に記述してください"
+            ></textarea>
           </div>
 
-          <div class="error" data-error-for="joinReason">コミュニティに入った理由を1つ以上選択してください。</div>
+          <div
+            class="error"
+            data-error-for="joinReason"
+          >
+            コミュニティに入った理由を1つ以上選択してください。
+          </div>
+
         </div>
 
         <div class="section">
+
           <div class="section-title">
             期待しているコンテンツ
-            <span class="req">必須</span>
-            <span class="limit">3つまで選択可</span>
+
+            <span class="req">
+              必須
+            </span>
+
+            <span class="limit">
+              3つまで選択可
+            </span>
           </div>
-<div class="choice-note">より強く感じるものを選択してください</div>
+
+          <div class="choice-note">
+            より強く感じるものを選択してください
+          </div>
 
           <div class="checks">
-            <label class="check-item"><input type="checkbox" name="wantedContent" value="エビデンス解説" />エビデンス解説</label>
-            <label class="check-item"><input type="checkbox" name="wantedContent" value="肉食レシピ" />肉食レシピ</label>
-            <label class="check-item"><input type="checkbox" name="wantedContent" value="専門家の知見" />専門家の知見</label>
-            <label class="check-item"><input type="checkbox" name="wantedContent" value="Q&A動画" />Q&A動画</label>
-            <label class="check-item"><input type="checkbox" name="wantedContent" value="LIVE配信" />LIVE配信</label>
-            <label class="check-item"><input type="checkbox" name="wantedContent" value="チャットルーム" />チャットルーム</label>
-            <label class="check-item"><input type="checkbox" name="wantedContent" value="筋トレ・スポーツ" />筋トレ・スポーツ</label>
-            <label class="check-item"><input type="checkbox" name="wantedContent" value="美容・アンチエイジング" />美容・アンチエイジング</label>
-            <label class="check-item"><input type="checkbox" name="wantedContent" value="Webアプリ" />Webアプリ</label>
-            <label class="check-item"><input type="checkbox" id="contentOtherChk" name="wantedContent" value="その他" />その他</label>
+
+            <label class="check-item">
+              <input
+                type="checkbox"
+                name="wantedContent"
+                value="エビデンス解説"
+              />
+              エビデンス解説
+            </label>
+
+            <label class="check-item">
+              <input
+                type="checkbox"
+                name="wantedContent"
+                value="肉食レシピ"
+              />
+              肉食レシピ
+            </label>
+
+            <label class="check-item">
+              <input
+                type="checkbox"
+                name="wantedContent"
+                value="専門家の知見"
+              />
+              専門家の知見
+            </label>
+
+            <label class="check-item">
+              <input
+                type="checkbox"
+                name="wantedContent"
+                value="Q&A動画"
+              />
+              Q&amp;A動画
+            </label>
+
+            <label class="check-item">
+              <input
+                type="checkbox"
+                name="wantedContent"
+                value="LIVE配信"
+              />
+              LIVE配信
+            </label>
+
+            <label class="check-item">
+              <input
+                type="checkbox"
+                name="wantedContent"
+                value="チャットルーム"
+              />
+              チャットルーム
+            </label>
+
+            <label class="check-item">
+              <input
+                type="checkbox"
+                name="wantedContent"
+                value="筋トレ・スポーツ"
+              />
+              筋トレ・スポーツ
+            </label>
+
+            <label class="check-item">
+              <input
+                type="checkbox"
+                name="wantedContent"
+                value="美容・アンチエイジング"
+              />
+              美容・アンチエイジング
+            </label>
+
+            <label class="check-item">
+              <input
+                type="checkbox"
+                name="wantedContent"
+                value="Webアプリ"
+              />
+              Webアプリ
+            </label>
+
+            <label class="check-item">
+              <input
+                type="checkbox"
+                id="contentOtherChk"
+                name="wantedContent"
+                value="その他"
+              />
+              その他
+            </label>
+
           </div>
 
-          <div class="field" id="contentOtherWrap" style="display:none;margin-top:12px;">
-            <textarea id="contentOtherText" name="contentOtherText" placeholder="具体的に記述してください"></textarea>
+          <div
+            class="field"
+            id="contentOtherWrap"
+            style="display:none;margin-top:12px;"
+          >
+            <textarea
+              id="contentOtherText"
+              name="contentOtherText"
+              placeholder="具体的に記述してください"
+            ></textarea>
           </div>
 
-          <div class="error" data-error-for="wantedContent">期待しているコンテンツを1つ以上選択してください。</div>
+          <div
+            class="error"
+            data-error-for="wantedContent"
+          >
+            期待しているコンテンツを1つ以上選択してください。
+          </div>
+
         </div>
 
         <div class="section">
+
           <div class="section-title">
             いま困ってること
-            <span class="req">必須</span>
-            <span class="limit">3つまで選択可</span>
+
+            <span class="req">
+              必須
+            </span>
+
+            <span class="limit">
+              3つまで選択可
+            </span>
           </div>
-<div class="choice-note">より強く感じるものを選択してください</div>
+
+          <div class="choice-note">
+            より強く感じるものを選択してください
+          </div>
 
           <div class="checks">
-            <label class="check-item"><input type="checkbox" name="currentProblems" value="食べ方・始め方" />食べ方・始め方</label>
-            <label class="check-item"><input type="checkbox" name="currentProblems" value="継続が難しい" />継続が難しい</label>
-            <label class="check-item"><input type="checkbox" name="currentProblems" value="外食が難しい" />外食が難しい</label>
-            <label class="check-item"><input type="checkbox" name="currentProblems" value="家族・周囲の理解" />家族・周囲の理解</label>
-            <label class="check-item"><input type="checkbox" name="currentProblems" value="体重が落ちない" />体重が落ちない</label>
-            <label class="check-item"><input type="checkbox" name="currentProblems" value="体重が増えない" />体重が増えない</label>
-            <label class="check-item"><input type="checkbox" name="currentProblems" value="むくみ・肌荒れ" />むくみ・肌荒れ</label>
-            <label class="check-item"><input type="checkbox" name="currentProblems" value="疲労・体調不良" />疲労・体調不良</label>
-            <label class="check-item"><input type="checkbox" name="currentProblems" value="食費・コスト" />食費・コスト</label>
-            <label class="check-item"><input type="checkbox" id="problemOtherChk" name="currentProblems" value="その他" />その他</label>
+
+            <label class="check-item">
+              <input
+                type="checkbox"
+                name="currentProblems"
+                value="食べ方・始め方"
+              />
+              食べ方・始め方
+            </label>
+
+            <label class="check-item">
+              <input
+                type="checkbox"
+                name="currentProblems"
+                value="継続が難しい"
+              />
+              継続が難しい
+            </label>
+
+            <label class="check-item">
+              <input
+                type="checkbox"
+                name="currentProblems"
+                value="外食が難しい"
+              />
+              外食が難しい
+            </label>
+
+            <label class="check-item">
+              <input
+                type="checkbox"
+                name="currentProblems"
+                value="家族・周囲の理解"
+              />
+              家族・周囲の理解
+            </label>
+
+            <label class="check-item">
+              <input
+                type="checkbox"
+                name="currentProblems"
+                value="体重が落ちない"
+              />
+              体重が落ちない
+            </label>
+
+            <label class="check-item">
+              <input
+                type="checkbox"
+                name="currentProblems"
+                value="体重が増えない"
+              />
+              体重が増えない
+            </label>
+
+            <label class="check-item">
+              <input
+                type="checkbox"
+                name="currentProblems"
+                value="むくみ・肌荒れ"
+              />
+              むくみ・肌荒れ
+            </label>
+
+            <label class="check-item">
+              <input
+                type="checkbox"
+                name="currentProblems"
+                value="疲労・体調不良"
+              />
+              疲労・体調不良
+            </label>
+
+            <label class="check-item">
+              <input
+                type="checkbox"
+                name="currentProblems"
+                value="食費・コスト"
+              />
+              食費・コスト
+            </label>
+
+            <label class="check-item">
+              <input
+                type="checkbox"
+                id="problemOtherChk"
+                name="currentProblems"
+                value="その他"
+              />
+              その他
+            </label>
+
           </div>
 
-          <div class="field" id="problemOtherWrap" style="display:none;margin-top:12px;">
-            <textarea id="problemOtherText" name="problemOtherText" placeholder="具体的に記述してください"></textarea>
+          <div
+            class="field"
+            id="problemOtherWrap"
+            style="display:none;margin-top:12px;"
+          >
+            <textarea
+              id="problemOtherText"
+              name="problemOtherText"
+              placeholder="具体的に記述してください"
+            ></textarea>
           </div>
 
-          <div class="error" data-error-for="currentProblems">いま困ってることを1つ以上選択してください。</div>
+          <div
+            class="error"
+            data-error-for="currentProblems"
+          >
+            いま困ってることを1つ以上選択してください。
+          </div>
+
         </div>
 
         <div class="section">
+
           <div class="section-title">
-  最後に
-  <span class="limit">任意</span>
-</div>
+            最後に
+
+            <span class="limit">
+              任意
+            </span>
+          </div>
 
           <div class="field">
-            <label class="inline-label">ねおに伝えておきたいこと / ご要望など</label>
-            <textarea id="freeMessage" name="freeMessage" placeholder="ご自由に記述してください"></textarea>
+
+            <label
+              class="inline-label"
+              for="freeMessage"
+            >
+              ねおに伝えておきたいこと / ご要望など
+            </label>
+
+            <textarea
+              id="freeMessage"
+              name="freeMessage"
+              placeholder="ご自由に記述してください"
+            ></textarea>
+
           </div>
+
         </div>
 
         <div class="actions">
-          <button class="btn btn-primary" type="submit">アンケートを送信</button>
-          <div id="formMsg" class="hint"></div>
+
+          <button
+            class="btn btn-primary"
+            type="submit"
+          >
+            アンケートを送信
+          </button>
+
+          <div
+            id="formMsg"
+            class="hint"
+          ></div>
+
         </div>
+
       </form>
+
     </main>
 
     <footer></footer>
+
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
   <script>
     (() => {
       const CONFIG = {
-        EMAILJS_PUBLIC_KEY: "QedlQxUXH2yDJJvjU",
-        EMAILJS_SERVICE_ID: "service_sgac4or",
-        EMAILJS_TEMPLATE_ID: "template_hmmrh9t",
-        MAX_SELECT: 3
+        EMAILJS_PUBLIC_KEY:
+          "QedlQxUXH2yDJJvjU",
+
+        EMAILJS_SERVICE_ID:
+          "service_sgac4or",
+
+        EMAILJS_TEMPLATE_ID:
+          "template_hmmrh9t",
+
+        MAX_SELECT:3
       };
 
-      const form = document.getElementById("surveyForm");
-      const msg = document.getElementById("formMsg");
-      const hero = document.getElementById("heroSection");
-      const thankYouStage = document.getElementById("thankYouStage");
+      const form =
+        document.getElementById(
+          "surveyForm"
+        );
 
-      const showError = (name, on) => {
-        const el = document.querySelector(`[data-error-for="${name}"]`);
-        if (el) el.style.display = on ? "block" : "none";
+      const msg =
+        document.getElementById(
+          "formMsg"
+        );
+
+      const hero =
+        document.getElementById(
+          "heroSection"
+        );
+
+      const thankYouStage =
+        document.getElementById(
+          "thankYouStage"
+        );
+
+      const showError = (
+        name,
+        on
+      ) => {
+        const el =
+          document.querySelector(
+            `[data-error-for="${name}"]`
+          );
+
+        if(el){
+          el.style.display =
+            on
+              ? "block"
+              : "none";
+        }
       };
 
-      const getCheckedValues = (selector) =>
-        [...document.querySelectorAll(selector)].filter(el => el.checked).map(el => el.value);
+      const getCheckedValues =
+        selector =>
+          [
+            ...document.querySelectorAll(
+              selector
+            )
+          ]
+          .filter(el => el.checked)
+          .map(el => el.value);
 
-      const getRadioValue = (name) => {
-        const el = document.querySelector(`input[name="${name}"]:checked`);
-        return el ? el.value : "";
-      };
+      const getRadioValue =
+        name => {
+          const el =
+            document.querySelector(
+              `input[name="${name}"]:checked`
+            );
 
-      const bindOtherRadio = (radioId, wrapId, textId) => {
-        const radio = document.getElementById(radioId);
-        const wrap = document.getElementById(wrapId);
-        const text = document.getElementById(textId);
-        if (!radio || !wrap || !text) return;
-
-        const sync = () => {
-          const show = radio.checked;
-          wrap.style.display = show ? "grid" : "none";
-          if (!show) text.value = "";
+          return el
+            ? el.value
+            : "";
         };
 
-        document.querySelectorAll(`input[name="${radio.name}"]`).forEach(el => {
-          el.addEventListener("change", sync);
-        });
+      const bindOtherRadio = (
+        radioId,
+        wrapId,
+        textId
+      ) => {
+        const radio =
+          document.getElementById(
+            radioId
+          );
 
-        sync();
-      };
+        const wrap =
+          document.getElementById(
+            wrapId
+          );
 
-      const bindOtherCheckbox = (chkId, wrapId, textId) => {
-        const chk = document.getElementById(chkId);
-        const wrap = document.getElementById(wrapId);
-        const text = document.getElementById(textId);
-        if (!chk || !wrap || !text) return;
+        const text =
+          document.getElementById(
+            textId
+          );
+
+        if(
+          !radio ||
+          !wrap ||
+          !text
+        ){
+          return;
+        }
 
         const sync = () => {
-          const show = chk.checked;
-          wrap.style.display = show ? "grid" : "none";
-          if (!show) text.value = "";
+          const show =
+            radio.checked;
+
+          wrap.style.display =
+            show
+              ? "grid"
+              : "none";
+
+          if(!show){
+            text.value = "";
+          }
         };
 
-        chk.addEventListener("change", sync);
-        sync();
-      };
-
-      const bindLimit = (name, errorName) => {
-        const items = [...document.querySelectorAll(`input[name="${name}"]`)];
-        items.forEach(el => {
-          el.addEventListener("change", () => {
-            const checked = items.filter(i => i.checked);
-
-            if (checked.length > CONFIG.MAX_SELECT) {
-              el.checked = false;
-              alert("選択は3つまでです。");
-              return;
-            }
-
-            showError(errorName, false);
+        document
+          .querySelectorAll(
+            `input[name="${radio.name}"]`
+          )
+          .forEach(el => {
+            el.addEventListener(
+              "change",
+              sync
+            );
           });
+
+        sync();
+      };
+
+      const bindOtherCheckbox = (
+        chkId,
+        wrapId,
+        textId
+      ) => {
+        const chk =
+          document.getElementById(
+            chkId
+          );
+
+        const wrap =
+          document.getElementById(
+            wrapId
+          );
+
+        const text =
+          document.getElementById(
+            textId
+          );
+
+        if(
+          !chk ||
+          !wrap ||
+          !text
+        ){
+          return;
+        }
+
+        const sync = () => {
+          const show =
+            chk.checked;
+
+          wrap.style.display =
+            show
+              ? "grid"
+              : "none";
+
+          if(!show){
+            text.value = "";
+          }
+        };
+
+        chk.addEventListener(
+          "change",
+          sync
+        );
+
+        sync();
+      };
+
+      const bindLimit = (
+        name,
+        errorName
+      ) => {
+        const items = [
+          ...document.querySelectorAll(
+            `input[name="${name}"]`
+          )
+        ];
+
+        items.forEach(el => {
+          el.addEventListener(
+            "change",
+            () => {
+              const checked =
+                items.filter(
+                  item =>
+                    item.checked
+                );
+
+              if(
+                checked.length >
+                CONFIG.MAX_SELECT
+              ){
+                el.checked = false;
+
+                alert(
+                  "選択は3つまでです。"
+                );
+
+                return;
+              }
+
+              showError(
+                errorName,
+                false
+              );
+            }
+          );
         });
       };
 
-      bindOtherRadio("dietOtherRadio", "dietOtherWrap", "dietOtherText");
-      bindOtherCheckbox("joinOtherChk", "joinOtherWrap", "joinOtherText");
-      bindOtherCheckbox("contentOtherChk", "contentOtherWrap", "contentOtherText");
-      bindOtherCheckbox("problemOtherChk", "problemOtherWrap", "problemOtherText");
+      bindOtherRadio(
+        "dietOtherRadio",
+        "dietOtherWrap",
+        "dietOtherText"
+      );
 
-      bindLimit("joinReason", "joinReason");
-      bindLimit("wantedContent", "wantedContent");
-      bindLimit("currentProblems", "currentProblems");
+      bindOtherCheckbox(
+        "joinOtherChk",
+        "joinOtherWrap",
+        "joinOtherText"
+      );
+
+      bindOtherCheckbox(
+        "contentOtherChk",
+        "contentOtherWrap",
+        "contentOtherText"
+      );
+
+      bindOtherCheckbox(
+        "problemOtherChk",
+        "problemOtherWrap",
+        "problemOtherText"
+      );
+
+      bindLimit(
+        "joinReason",
+        "joinReason"
+      );
+
+      bindLimit(
+        "wantedContent",
+        "wantedContent"
+      );
+
+      bindLimit(
+        "currentProblems",
+        "currentProblems"
+      );
 
       const validateAll = () => {
         let ok = true;
 
-        ["basic","dietStatus","joinReason","wantedContent","currentProblems"].forEach(k => showError(k, false));
+        [
+          "basic",
+          "dietStatus",
+          "joinReason",
+          "wantedContent",
+          "currentProblems"
+        ].forEach(key => {
+          showError(
+            key,
+            false
+          );
+        });
 
-        if (!form.sex.value.trim() || !form.age.value.trim()) {
-          showError("basic", true);
+        if(
+          !form.profileName.value.trim() ||
+          !form.sex.value.trim() ||
+          !form.age.value.trim()
+        ){
+          showError(
+            "basic",
+            true
+          );
+
           ok = false;
         }
 
-        if (!getRadioValue("dietStatus")) {
-          showError("dietStatus", true);
+        if(
+          !getRadioValue(
+            "dietStatus"
+          )
+        ){
+          showError(
+            "dietStatus",
+            true
+          );
+
           ok = false;
         }
 
-        if (document.getElementById("dietOtherRadio").checked && !form.dietOtherText.value.trim()) {
-          showError("dietStatus", true);
+        if(
+          document
+            .getElementById(
+              "dietOtherRadio"
+            )
+            .checked &&
+          !form
+            .dietOtherText
+            .value
+            .trim()
+        ){
+          showError(
+            "dietStatus",
+            true
+          );
+
           ok = false;
         }
 
-        const joinReasons = getCheckedValues('input[name="joinReason"]');
-        if (joinReasons.length === 0 || joinReasons.length > CONFIG.MAX_SELECT) {
-          showError("joinReason", true);
+        const joinReasons =
+          getCheckedValues(
+            'input[name="joinReason"]'
+          );
+
+        if(
+          joinReasons.length === 0 ||
+          joinReasons.length >
+            CONFIG.MAX_SELECT
+        ){
+          showError(
+            "joinReason",
+            true
+          );
+
           ok = false;
         }
 
-        if (document.getElementById("joinOtherChk").checked && !form.joinOtherText.value.trim()) {
-          showError("joinReason", true);
+        if(
+          document
+            .getElementById(
+              "joinOtherChk"
+            )
+            .checked &&
+          !form
+            .joinOtherText
+            .value
+            .trim()
+        ){
+          showError(
+            "joinReason",
+            true
+          );
+
           ok = false;
         }
 
-        const wantedContent = getCheckedValues('input[name="wantedContent"]');
-        if (wantedContent.length === 0 || wantedContent.length > CONFIG.MAX_SELECT) {
-          showError("wantedContent", true);
+        const wantedContent =
+          getCheckedValues(
+            'input[name="wantedContent"]'
+          );
+
+        if(
+          wantedContent.length === 0 ||
+          wantedContent.length >
+            CONFIG.MAX_SELECT
+        ){
+          showError(
+            "wantedContent",
+            true
+          );
+
           ok = false;
         }
 
-        if (document.getElementById("contentOtherChk").checked && !form.contentOtherText.value.trim()) {
-          showError("wantedContent", true);
+        if(
+          document
+            .getElementById(
+              "contentOtherChk"
+            )
+            .checked &&
+          !form
+            .contentOtherText
+            .value
+            .trim()
+        ){
+          showError(
+            "wantedContent",
+            true
+          );
+
           ok = false;
         }
 
-        const currentProblems = getCheckedValues('input[name="currentProblems"]');
-        if (currentProblems.length === 0 || currentProblems.length > CONFIG.MAX_SELECT) {
-          showError("currentProblems", true);
+        const currentProblems =
+          getCheckedValues(
+            'input[name="currentProblems"]'
+          );
+
+        if(
+          currentProblems.length === 0 ||
+          currentProblems.length >
+            CONFIG.MAX_SELECT
+        ){
+          showError(
+            "currentProblems",
+            true
+          );
+
           ok = false;
         }
 
-        if (document.getElementById("problemOtherChk").checked && !form.problemOtherText.value.trim()) {
-          showError("currentProblems", true);
+        if(
+          document
+            .getElementById(
+              "problemOtherChk"
+            )
+            .checked &&
+          !form
+            .problemOtherText
+            .value
+            .trim()
+        ){
+          showError(
+            "currentProblems",
+            true
+          );
+
           ok = false;
         }
 
         return ok;
       };
 
-      const withOtherText = (values, otherChkId, otherTextId) => {
-        const otherChk = document.getElementById(otherChkId);
-        const otherText = document.getElementById(otherTextId);
+      const withOtherText = (
+        values,
+        otherChkId,
+        otherTextId
+      ) => {
+        const otherChk =
+          document.getElementById(
+            otherChkId
+          );
 
-        if (otherChk && otherChk.checked && otherText && otherText.value.trim()) {
-          return values.join(" / ") + `｜その他：${otherText.value.trim()}`;
+        const otherText =
+          document.getElementById(
+            otherTextId
+          );
+
+        if(
+          otherChk &&
+          otherChk.checked &&
+          otherText &&
+          otherText.value.trim()
+        ){
+          return (
+            values.join(" / ") +
+            `｜その他：${otherText.value.trim()}`
+          );
         }
 
         return values.join(" / ");
       };
 
-      const buildTemplateParams = () => {
-        const sexMap = {
-          M: "男性",
-          F: "女性",
-          other: "その他 / 回答しない"
+      const buildTemplateParams =
+        () => {
+          const sexMap = {
+            M:"男性",
+            F:"女性",
+            other:
+              "その他 / 回答しない"
+          };
+
+          const dietStatus =
+            getRadioValue(
+              "dietStatus"
+            );
+
+          const dietText =
+            document
+              .getElementById(
+                "dietOtherRadio"
+              )
+              .checked &&
+            form
+              .dietOtherText
+              .value
+              .trim()
+              ? `その他：${form.dietOtherText.value.trim()}`
+              : dietStatus;
+
+          const joinReasons =
+            getCheckedValues(
+              'input[name="joinReason"]'
+            );
+
+          const wantedContent =
+            getCheckedValues(
+              'input[name="wantedContent"]'
+            );
+
+          const currentProblems =
+            getCheckedValues(
+              'input[name="currentProblems"]'
+            );
+
+          return {
+            form_type:
+              "Discordコミュニティ参加者向けアンケート",
+
+            profile_name:
+              form
+                .profileName
+                .value
+                .trim(),
+
+            sex:
+              sexMap[
+                form.sex.value
+              ] ||
+              form.sex.value,
+
+            age:
+              form.age.value,
+
+            diet_status:
+              dietText,
+
+            join_reasons:
+              withOtherText(
+                joinReasons,
+                "joinOtherChk",
+                "joinOtherText"
+              ),
+
+            wanted_content:
+              withOtherText(
+                wantedContent,
+                "contentOtherChk",
+                "contentOtherText"
+              ),
+
+            current_problems:
+              withOtherText(
+                currentProblems,
+                "problemOtherChk",
+                "problemOtherText"
+              ),
+
+            free_message:
+              form
+                .freeMessage
+                .value
+                .trim(),
+
+            submitted_at:
+              new Date()
+                .toLocaleString(
+                  "ja-JP"
+                )
+          };
         };
 
-        const dietStatus = getRadioValue("dietStatus");
-        const dietText = document.getElementById("dietOtherRadio").checked && form.dietOtherText.value.trim()
-          ? `その他：${form.dietOtherText.value.trim()}`
-          : dietStatus;
+      const showThankYouView =
+        () => {
+          hero.style.display =
+            "none";
 
-        const joinReasons = getCheckedValues('input[name="joinReason"]');
-        const wantedContent = getCheckedValues('input[name="wantedContent"]');
-        const currentProblems = getCheckedValues('input[name="currentProblems"]');
+          form.style.display =
+            "none";
 
-        return {
-          form_type: "Patreon参加者さま向けアンケート",
-          sex: sexMap[form.sex.value] || form.sex.value,
-          age: form.age.value,
-          diet_status: dietText,
-          join_reasons: withOtherText(joinReasons, "joinOtherChk", "joinOtherText"),
-          wanted_content: withOtherText(wantedContent, "contentOtherChk", "contentOtherText"),
-          current_problems: withOtherText(currentProblems, "problemOtherChk", "problemOtherText"),
-          free_message: form.freeMessage.value.trim(),
-          submitted_at: new Date().toLocaleString("ja-JP")
+          thankYouStage.style.display =
+            "flex";
+
+          window.scrollTo({
+            top:0,
+            behavior:"auto"
+          });
         };
-      };
 
-      const showThankYouView = () => {
-        hero.style.display = "none";
-        form.style.display = "none";
-        thankYouStage.style.display = "flex";
-        window.scrollTo({top:0, behavior:"auto"});
-      };
+      const initEmailJs =
+        () => {
+          if(
+            CONFIG
+              .EMAILJS_PUBLIC_KEY &&
+            window.emailjs
+          ){
+            emailjs.init({
+              publicKey:
+                CONFIG
+                  .EMAILJS_PUBLIC_KEY
+            });
 
-      const initEmailJs = () => {
-        if (CONFIG.EMAILJS_PUBLIC_KEY && window.emailjs) {
-          emailjs.init({ publicKey: CONFIG.EMAILJS_PUBLIC_KEY });
-          return true;
+            return true;
+          }
+
+          return false;
+        };
+
+      const emailReady =
+        initEmailJs();
+
+      form.addEventListener(
+        "submit",
+        async event => {
+          event.preventDefault();
+
+          msg.textContent = "";
+
+          if(!validateAll()){
+            return;
+          }
+
+          const submitBtn =
+            form.querySelector(
+              'button[type="submit"]'
+            );
+
+          submitBtn.disabled = true;
+
+          msg.textContent =
+            "送信中です…（反映まで数十秒かかる場合があります）";
+
+          try{
+            if(!emailReady){
+              throw new Error(
+                "EmailJS設定が未完了です"
+              );
+            }
+
+            await emailjs.send(
+              CONFIG
+                .EMAILJS_SERVICE_ID,
+
+              CONFIG
+                .EMAILJS_TEMPLATE_ID,
+
+              buildTemplateParams()
+            );
+
+            msg.textContent =
+              "送信が完了しました。";
+
+            showThankYouView();
+
+          }catch(error){
+            console.error(
+              error
+            );
+
+            msg.textContent =
+              "送信に失敗しました。EmailJS設定または通信環境をご確認ください。";
+
+            alert(
+              "送信に失敗しました。HTML内の EmailJS 設定値を確認してください。"
+            );
+
+          }finally{
+            submitBtn.disabled =
+              false;
+          }
         }
-        return false;
-      };
-
-      const emailReady = initEmailJs();
-
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        msg.textContent = "";
-
-        if (!validateAll()) return;
-
-        const submitBtn = form.querySelector('button[type="submit"]');
-        submitBtn.disabled = true;
-        msg.textContent = "送信中です…（反映まで数十秒かかる場合があります）";
-
-        try {
-          if (!emailReady) throw new Error("EmailJS設定が未完了です");
-          await emailjs.send(CONFIG.EMAILJS_SERVICE_ID, CONFIG.EMAILJS_TEMPLATE_ID, buildTemplateParams());
-          msg.textContent = "送信が完了しました。";
-          showThankYouView();
-        } catch (err) {
-          console.error(err);
-          msg.textContent = "送信に失敗しました。EmailJS設定または通信環境をご確認ください。";
-          alert("送信に失敗しました。HTML内の EmailJS 設定値を確認してください。");
-        } finally {
-          submitBtn.disabled = false;
-        }
-      });
-
-      form.sex.addEventListener("change", () => showError("basic", false));
-      form.age.addEventListener("input", () => showError("basic", false));
-
-      document.querySelectorAll('input[name="dietStatus"]').forEach(el =>
-        el.addEventListener("change", () => showError("dietStatus", false))
       );
 
-      form.dietOtherText.addEventListener("input", () => showError("dietStatus", false));
-      form.joinOtherText.addEventListener("input", () => showError("joinReason", false));
-      form.contentOtherText.addEventListener("input", () => showError("wantedContent", false));
-      form.problemOtherText.addEventListener("input", () => showError("currentProblems", false));
+      form
+        .profileName
+        .addEventListener(
+          "input",
+          () => {
+            showError(
+              "basic",
+              false
+            );
+          }
+        );
+
+      form
+        .sex
+        .addEventListener(
+          "change",
+          () => {
+            showError(
+              "basic",
+              false
+            );
+          }
+        );
+
+      form
+        .age
+        .addEventListener(
+          "input",
+          () => {
+            showError(
+              "basic",
+              false
+            );
+          }
+        );
+
+      document
+        .querySelectorAll(
+          'input[name="dietStatus"]'
+        )
+        .forEach(el => {
+          el.addEventListener(
+            "change",
+            () => {
+              showError(
+                "dietStatus",
+                false
+              );
+            }
+          );
+        });
+
+      form
+        .dietOtherText
+        .addEventListener(
+          "input",
+          () => {
+            showError(
+              "dietStatus",
+              false
+            );
+          }
+        );
+
+      form
+        .joinOtherText
+        .addEventListener(
+          "input",
+          () => {
+            showError(
+              "joinReason",
+              false
+            );
+          }
+        );
+
+      form
+        .contentOtherText
+        .addEventListener(
+          "input",
+          () => {
+            showError(
+              "wantedContent",
+              false
+            );
+          }
+        );
+
+      form
+        .problemOtherText
+        .addEventListener(
+          "input",
+          () => {
+            showError(
+              "currentProblems",
+              false
+            );
+          }
+        );
     })();
   </script>
 </body>
