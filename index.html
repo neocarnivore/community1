@@ -875,7 +875,7 @@
         </div>
 
         <div class="pill-note">
-          Discordコミュニティ
+          Discordコミュニティ参加者さまへ
         </div>
 
       </div>
@@ -981,12 +981,9 @@
                 class="inline-label"
                 for="profileName"
               >
-                Discordコミュニティでのプロフィール名
+                Discordのプロフィール名
               </label>
 
-              <span class="inline-required">
-                必須
-              </span>
             </div>
 
             <input
@@ -1176,9 +1173,9 @@
               <input
                 type="checkbox"
                 name="joinReason"
-                value="肉食を安全に始めたい"
+                value="肉食を正しく始めたい"
               />
-              肉食を安全に始めたい
+              肉食を正しく始めたい
             </label>
 
             <label class="check-item">
@@ -1273,140 +1270,6 @@
             data-error-for="joinReason"
           >
             コミュニティに入った理由を1つ以上選択してください。
-          </div>
-
-        </div>
-
-        <div class="section">
-
-          <div class="section-title">
-            期待しているコンテンツ
-
-            <span class="req">
-              必須
-            </span>
-
-            <span class="limit">
-              3つまで選択可
-            </span>
-          </div>
-
-          <div class="choice-note">
-            より強く感じるものを選択してください
-          </div>
-
-          <div class="checks">
-
-            <label class="check-item">
-              <input
-                type="checkbox"
-                name="wantedContent"
-                value="エビデンス解説"
-              />
-              エビデンス解説
-            </label>
-
-            <label class="check-item">
-              <input
-                type="checkbox"
-                name="wantedContent"
-                value="肉食レシピ"
-              />
-              肉食レシピ
-            </label>
-
-            <label class="check-item">
-              <input
-                type="checkbox"
-                name="wantedContent"
-                value="専門家の知見"
-              />
-              専門家の知見
-            </label>
-
-            <label class="check-item">
-              <input
-                type="checkbox"
-                name="wantedContent"
-                value="Q&A動画"
-              />
-              Q&amp;A動画
-            </label>
-
-            <label class="check-item">
-              <input
-                type="checkbox"
-                name="wantedContent"
-                value="LIVE配信"
-              />
-              LIVE配信
-            </label>
-
-            <label class="check-item">
-              <input
-                type="checkbox"
-                name="wantedContent"
-                value="チャットルーム"
-              />
-              チャットルーム
-            </label>
-
-            <label class="check-item">
-              <input
-                type="checkbox"
-                name="wantedContent"
-                value="筋トレ・スポーツ"
-              />
-              筋トレ・スポーツ
-            </label>
-
-            <label class="check-item">
-              <input
-                type="checkbox"
-                name="wantedContent"
-                value="美容・アンチエイジング"
-              />
-              美容・アンチエイジング
-            </label>
-
-            <label class="check-item">
-              <input
-                type="checkbox"
-                name="wantedContent"
-                value="Webアプリ"
-              />
-              Webアプリ
-            </label>
-
-            <label class="check-item">
-              <input
-                type="checkbox"
-                id="contentOtherChk"
-                name="wantedContent"
-                value="その他"
-              />
-              その他
-            </label>
-
-          </div>
-
-          <div
-            class="field"
-            id="contentOtherWrap"
-            style="display:none;margin-top:12px;"
-          >
-            <textarea
-              id="contentOtherText"
-              name="contentOtherText"
-              placeholder="具体的に記述してください"
-            ></textarea>
-          </div>
-
-          <div
-            class="error"
-            data-error-for="wantedContent"
-          >
-            期待しているコンテンツを1つ以上選択してください。
           </div>
 
         </div>
@@ -1835,12 +1698,6 @@
       );
 
       bindOtherCheckbox(
-        "contentOtherChk",
-        "contentOtherWrap",
-        "contentOtherText"
-      );
-
-      bindOtherCheckbox(
         "problemOtherChk",
         "problemOtherWrap",
         "problemOtherText"
@@ -1849,11 +1706,6 @@
       bindLimit(
         "joinReason",
         "joinReason"
-      );
-
-      bindLimit(
-        "wantedContent",
-        "wantedContent"
       );
 
       bindLimit(
@@ -1868,7 +1720,6 @@
           "basic",
           "dietStatus",
           "joinReason",
-          "wantedContent",
           "currentProblems"
         ].forEach(key => {
           showError(
@@ -1953,43 +1804,6 @@
         ){
           showError(
             "joinReason",
-            true
-          );
-
-          ok = false;
-        }
-
-        const wantedContent =
-          getCheckedValues(
-            'input[name="wantedContent"]'
-          );
-
-        if(
-          wantedContent.length === 0 ||
-          wantedContent.length >
-            CONFIG.MAX_SELECT
-        ){
-          showError(
-            "wantedContent",
-            true
-          );
-
-          ok = false;
-        }
-
-        if(
-          document
-            .getElementById(
-              "contentOtherChk"
-            )
-            .checked &&
-          !form
-            .contentOtherText
-            .value
-            .trim()
-        ){
-          showError(
-            "wantedContent",
             true
           );
 
@@ -2098,11 +1912,6 @@
               'input[name="joinReason"]'
             );
 
-          const wantedContent =
-            getCheckedValues(
-              'input[name="wantedContent"]'
-            );
-
           const currentProblems =
             getCheckedValues(
               'input[name="currentProblems"]'
@@ -2135,13 +1944,6 @@
                 joinReasons,
                 "joinOtherChk",
                 "joinOtherText"
-              ),
-
-            wanted_content:
-              withOtherText(
-                wantedContent,
-                "contentOtherChk",
-                "contentOtherText"
               ),
 
             current_problems:
@@ -2337,18 +2139,6 @@
           () => {
             showError(
               "joinReason",
-              false
-            );
-          }
-        );
-
-      form
-        .contentOtherText
-        .addEventListener(
-          "input",
-          () => {
-            showError(
-              "wantedContent",
               false
             );
           }
