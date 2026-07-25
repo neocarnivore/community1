@@ -1005,7 +1005,6 @@
               >
                 Discordのプロフィール名
               </label>
-
             </div>
 
             <input
@@ -1496,6 +1495,8 @@
 
         EMAILJS_TEMPLATE_ID:
           "template_hmmrh9t",
+
+        GOOGLE_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbw5RMyo6yl6vb5XjS4K3lCPWzpgVNafPoPfSTeCVfytUbg-5-Wbl_OunTTWeo0UmwMN/exec",
 
         MAX_SELECT:3
       };
@@ -1989,6 +1990,59 @@
           };
         };
 
+      const saveToGoogleSheets =
+        async params => {
+          if(
+            !CONFIG
+              .GOOGLE_SCRIPT_URL ||
+            !CONFIG
+              .GOOGLE_SCRIPT_URL
+              .includes(
+                "script.google.com/macros/s/"
+              )
+          ){
+            throw new Error(
+              "Google Apps Script URLが設定されていません。"
+            );
+          }
+
+          const body =
+            new URLSearchParams();
+
+          Object
+            .entries(params)
+            .forEach(
+              ([
+                key,
+                value
+              ]) => {
+                body.append(
+                  key,
+                  value == null
+                    ? ""
+                    : String(value)
+                );
+              }
+            );
+
+          await fetch(
+            CONFIG
+              .GOOGLE_SCRIPT_URL,
+            {
+              method:"POST",
+
+              mode:"no-cors",
+
+              headers:{
+                "Content-Type":
+                  "application/x-www-form-urlencoded;charset=UTF-8"
+              },
+
+              body
+            }
+          );
+        };
+
       const showThankYouView =
         () => {
           hero.style.display =
@@ -2056,15 +2110,55 @@
               );
             }
 
-            await emailjs.send(
-              CONFIG
-                .EMAILJS_SERVICE_ID,
+            const templateParams =
+              buildTemplateParams();
 
-              CONFIG
-                .EMAILJS_TEMPLATE_ID,
+            const results =
+              await Promise.allSettled([
+                emailjs.send(
+                  CONFIG
+                    .EMAILJS_SERVICE_ID,
 
-              buildTemplateParams()
-            );
+                  CONFIG
+                    .EMAILJS_TEMPLATE_ID,
+
+                  templateParams
+                ),
+
+                saveToGoogleSheets(
+                  templateParams
+                )
+              ]);
+
+            const emailResult =
+              results[0];
+
+            const sheetResult =
+              results[1];
+
+            if(
+              sheetResult.status ===
+              "rejected"
+            ){
+              console.error(
+                "Google Sheetsへの保存に失敗しました。",
+                sheetResult.reason
+              );
+
+              throw new Error(
+                "回答データを保存できませんでした。"
+              );
+            }
+
+            if(
+              emailResult.status ===
+              "rejected"
+            ){
+              console.warn(
+                "メール通知のみ失敗しました。",
+                emailResult.reason
+              );
+            }
 
             msg.textContent =
               "送信が完了しました。";
@@ -2077,10 +2171,10 @@
             );
 
             msg.textContent =
-              "送信に失敗しました。EmailJS設定または通信環境をご確認ください。";
+              "送信に失敗しました。設定または通信環境をご確認ください。";
 
             alert(
-              "送信に失敗しました。HTML内の EmailJS 設定値を確認してください。"
+              "送信に失敗しました。Google Apps ScriptのURLとEmailJS設定を確認してください。"
             );
 
           }finally{
