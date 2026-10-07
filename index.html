@@ -1151,6 +1151,20 @@
 
           <div
             class="field"
+            id="carnivoreStartWrap"
+            style="display:none;margin-top:12px;"
+          >
+            <label class="inline-label" for="carnivoreStartedAt">
+              肉食を始めたのはいつ頃ですか？
+            </label>
+            <input id="carnivoreStartedAt" name="carnivoreStartedAt" type="date" />
+            <div class="hint">
+              正確な日付じゃなくても大丈夫です。だいたい「この頃から始めた」という日付でOKです。
+            </div>
+          </div>
+
+          <div
+            class="field"
             id="dietOtherWrap"
             style="display:none;margin-top:12px;"
           >
@@ -1498,6 +1512,9 @@
 
         GOOGLE_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbwsuNoT_UbGZ3DiQLE6Mv-IoJTHaP4DzlQh3tTeCbgXGmw6_OuNK1eJTeZrgfB_ke3Q/exec",
 
+        CARNIVORE_HISTORY_API:
+          "https://neocarnivore-discord-onboarding-bot.neofitness425.workers.dev",
+
         MAX_SELECT:3
       };
 
@@ -1510,6 +1527,35 @@
         document.getElementById(
           "formMsg"
         );
+
+      const identityToken =
+        new URLSearchParams(
+          window.location.search
+        ).get("token") || "";
+
+      const carnivoreStartWrap =
+        document.getElementById(
+          "carnivoreStartWrap"
+        );
+
+      const carnivoreStartedAt =
+        document.getElementById(
+          "carnivoreStartedAt"
+        );
+
+      const tokyoToday =
+        new Intl.DateTimeFormat(
+          "en-CA",
+          {
+            timeZone:"Asia/Tokyo",
+            year:"numeric",
+            month:"2-digit",
+            day:"2-digit"
+          }
+        ).format(new Date());
+
+      carnivoreStartedAt.max =
+        tokyoToday;
 
       const hero =
         document.getElementById(
@@ -1714,6 +1760,40 @@
         "dietOtherText"
       );
 
+      const syncCarnivoreStart =
+        () => {
+          const isCarnivore =
+            getRadioValue(
+              "dietStatus"
+            ) ===
+            "すでに肉食を実践している";
+
+          carnivoreStartWrap.style.display =
+            isCarnivore
+              ? "grid"
+              : "none";
+
+          carnivoreStartedAt.required =
+            isCarnivore;
+
+          if(!isCarnivore){
+            carnivoreStartedAt.value = "";
+          }
+        };
+
+      document
+        .querySelectorAll(
+          'input[name="dietStatus"]'
+        )
+        .forEach(el => {
+          el.addEventListener(
+            "change",
+            syncCarnivoreStart
+          );
+        });
+
+      syncCarnivoreStart();
+
       bindOtherCheckbox(
         "joinOtherChk",
         "joinOtherWrap",
@@ -1787,6 +1867,25 @@
             .dietOtherText
             .value
             .trim()
+        ){
+          showError(
+            "dietStatus",
+            true
+          );
+
+          ok = false;
+        }
+
+        if(
+          getRadioValue(
+            "dietStatus"
+          ) ===
+            "すでに肉食を実践している" &&
+          (
+            !carnivoreStartedAt.value ||
+            carnivoreStartedAt.value >
+              tokyoToday
+          )
         ){
           showError(
             "dietStatus",
@@ -1962,6 +2061,15 @@
             diet_status:
               dietText,
 
+            carnivore_started_at:
+              carnivoreStartedAt.value,
+
+            start_date_source:
+              dietStatus ===
+                "すでに肉食を実践している"
+                ? "user_reported"
+                : "community_join",
+
             join_reasons:
               withOtherText(
                 joinReasons,
@@ -2041,6 +2149,52 @@
               body
             }
           );
+        };
+
+      const saveCarnivoreHistory =
+        async params => {
+          if(!identityToken){
+            return {
+              skipped:true
+            };
+          }
+
+          const response =
+            await fetch(
+              `${CONFIG.CARNIVORE_HISTORY_API}/api/new-member`,
+              {
+                method:"POST",
+                headers:{
+                  "Content-Type":
+                    "application/json"
+                },
+                body:JSON.stringify({
+                  token:identityToken,
+                  diet_status:
+                    getRadioValue(
+                      "dietStatus"
+                    ),
+                  carnivore_started_at:
+                    params
+                      .carnivore_started_at
+                })
+              }
+            );
+
+          const result =
+            await response.json();
+
+          if(
+            !response.ok ||
+            !result.ok
+          ){
+            throw new Error(
+              result.error ||
+              "肉食歴を設定できませんでした。"
+            );
+          }
+
+          return result;
         };
 
       const showThankYouView =
@@ -2127,6 +2281,10 @@
 
                 saveToGoogleSheets(
                   templateParams
+                ),
+
+                saveCarnivoreHistory(
+                  templateParams
                 )
               ]);
 
@@ -2135,6 +2293,9 @@
 
             const sheetResult =
               results[1];
+
+            const historyResult =
+              results[2];
 
             if(
               sheetResult.status ===
@@ -2147,6 +2308,21 @@
 
               throw new Error(
                 "回答データを保存できませんでした。"
+              );
+            }
+
+            if(
+              identityToken &&
+              historyResult.status ===
+                "rejected"
+            ){
+              console.error(
+                "Discordとの紐付けに失敗しました。",
+                historyResult.reason
+              );
+
+              throw new Error(
+                "Discordとの紐付けに失敗しました。"
               );
             }
 
