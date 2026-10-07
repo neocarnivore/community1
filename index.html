@@ -484,31 +484,98 @@
       background:#fdfdff;
     }
 
-    #carnivoreStartedAt{
+    .date-picker-trigger{
       width:100%;
-      min-height:48px;
-      padding:8px 12px;
+      max-width:100%;
+      min-width:0;
+      min-height:50px;
+      padding:10px 14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
       color:var(--text);
-      background:#fff;
-      border:2px solid var(--accent-light);
-      border-radius:0;
+      background:linear-gradient(180deg,#fff,#faf9ff);
+      border:1.5px solid rgba(84,71,255,.52);
+      border-radius:10px;
       outline:none;
       font-family:inherit;
-      font-size:22px;
-      font-weight:500;
+      font-size:17px;
+      font-weight:650;
       line-height:1.2;
-      text-align:center;
       cursor:pointer;
+      box-shadow:0 5px 14px rgba(49,36,232,.07);
     }
 
-    #carnivoreStartedAt:focus{
+    .date-picker-trigger:focus-visible{
       border-color:var(--accent);
       box-shadow:0 0 0 3px rgba(84,71,255,.12);
     }
 
-    #carnivoreStartedAt::-webkit-date-and-time-value{
-      min-height:1.2em;
-      text-align:center;
+    .date-picker-icon{
+      color:var(--accent);
+      font-size:16px;
+    }
+
+    .date-picker-modal[hidden]{display:none;}
+    .date-picker-modal{
+      position:fixed;
+      inset:0;
+      z-index:100;
+      display:grid;
+      place-items:center;
+      padding:18px;
+      background:rgba(17,20,39,.28);
+      -webkit-backdrop-filter:blur(5px);
+      backdrop-filter:blur(5px);
+      animation:dateFade .18s ease-out;
+    }
+
+    .date-picker-panel{
+      width:min(100%,360px);
+      padding:18px;
+      background:linear-gradient(145deg,#fff,#f8f7ff);
+      border:1px solid rgba(84,71,255,.18);
+      border-radius:20px;
+      box-shadow:0 22px 60px rgba(49,36,232,.20);
+      animation:dateFloat .22s ease-out;
+    }
+
+    .date-picker-head{
+      display:grid;
+      grid-template-columns:42px 1fr 42px;
+      align-items:center;
+      gap:8px;
+      margin-bottom:14px;
+    }
+
+    .date-picker-title{text-align:center;font-size:17px;font-weight:750;}
+    .date-nav{
+      width:42px;height:42px;padding:0;border:0;border-radius:50%;
+      color:var(--accent-2);background:var(--accent-soft);font-size:21px;
+      box-shadow:none;
+    }
+
+    .date-weekdays,.date-days{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;}
+    .date-weekdays{margin-bottom:6px;color:var(--muted);font-size:11px;text-align:center;}
+    .date-day{
+      aspect-ratio:1;padding:0;border:0;border-radius:50%;
+      color:var(--text);background:transparent;font-size:14px;font-weight:600;box-shadow:none;
+    }
+    .date-day:hover{background:var(--accent-soft);}
+    .date-day.is-selected{color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent-light));}
+    .date-day:disabled{color:#c8cad5;background:transparent;cursor:not-allowed;}
+    .date-day.is-empty{visibility:hidden;}
+    .date-picker-close{
+      width:100%;margin-top:14px;padding:10px;border:0;border-radius:10px;
+      color:var(--accent-2);background:var(--accent-soft);font:inherit;font-weight:700;box-shadow:none;
+    }
+
+    @keyframes dateFade{from{opacity:0}to{opacity:1}}
+    @keyframes dateFloat{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+
+    @media (prefers-reduced-motion:reduce){
+      .date-picker-modal,.date-picker-panel{animation:none;}
     }
 
     .inline-label{
@@ -1184,9 +1251,25 @@
             <label class="inline-label" for="carnivoreStartedAt">
               肉食を始めたのはいつ頃ですか？
             </label>
-            <input id="carnivoreStartedAt" name="carnivoreStartedAt" type="date" />
+            <input id="carnivoreStartedAt" name="carnivoreStartedAt" type="hidden" />
+            <button class="date-picker-trigger" id="carnivoreDateButton" type="button">
+              <span id="carnivoreDateLabel"></span>
+              <span class="date-picker-icon" aria-hidden="true">▾</span>
+            </button>
             <div class="hint">
               だいたい「この頃から始めた」という日付でOKです。
+            </div>
+            <div class="date-picker-modal" id="carnivoreDateModal" hidden>
+              <div class="date-picker-panel" role="dialog" aria-modal="true" aria-label="肉食開始日を選択">
+                <div class="date-picker-head">
+                  <button class="date-nav" id="datePrevMonth" type="button" aria-label="前の月">‹</button>
+                  <div class="date-picker-title" id="datePickerTitle"></div>
+                  <button class="date-nav" id="dateNextMonth" type="button" aria-label="次の月">›</button>
+                </div>
+                <div class="date-weekdays" aria-hidden="true"><span>日</span><span>月</span><span>火</span><span>水</span><span>木</span><span>金</span><span>土</span></div>
+                <div class="date-days" id="datePickerDays"></div>
+                <button class="date-picker-close" id="datePickerClose" type="button">閉じる</button>
+              </div>
             </div>
           </div>
 
@@ -1584,6 +1667,145 @@
       carnivoreStartedAt.max =
         tokyoToday;
 
+      const carnivoreDateButton =
+        document.getElementById(
+          "carnivoreDateButton"
+        );
+
+      const carnivoreDateLabel =
+        document.getElementById(
+          "carnivoreDateLabel"
+        );
+
+      const carnivoreDateModal =
+        document.getElementById(
+          "carnivoreDateModal"
+        );
+
+      const datePickerTitle =
+        document.getElementById(
+          "datePickerTitle"
+        );
+
+      const datePickerDays =
+        document.getElementById(
+          "datePickerDays"
+        );
+
+      const todayParts =
+        tokyoToday
+          .split("-")
+          .map(Number);
+
+      let calendarYear =
+        todayParts[0];
+
+      let calendarMonth =
+        todayParts[1] - 1;
+
+      const updateDateLabel = () => {
+        carnivoreDateLabel.textContent =
+          (carnivoreStartedAt.value || tokyoToday)
+            .replaceAll("-","/");
+      };
+
+      const renderCalendar = () => {
+        datePickerTitle.textContent =
+          `${calendarYear}年 ${calendarMonth + 1}月`;
+
+        datePickerDays.replaceChildren();
+
+        const firstDay =
+          new Date(
+            calendarYear,
+            calendarMonth,
+            1
+          ).getDay();
+
+        const lastDate =
+          new Date(
+            calendarYear,
+            calendarMonth + 1,
+            0
+          ).getDate();
+
+        for(let index = 0; index < firstDay; index += 1){
+          const empty = document.createElement("span");
+          empty.className = "date-day is-empty";
+          datePickerDays.append(empty);
+        }
+
+        for(let day = 1; day <= lastDate; day += 1){
+          const value =
+            `${calendarYear}-${String(calendarMonth + 1).padStart(2,"0")}-${String(day).padStart(2,"0")}`;
+
+          const button =
+            document.createElement("button");
+
+          button.type = "button";
+          button.className = "date-day";
+          button.textContent = String(day);
+          button.disabled = value > tokyoToday;
+
+          if(value === carnivoreStartedAt.value){
+            button.classList.add("is-selected");
+          }
+
+          button.addEventListener("click",() => {
+            carnivoreStartedAt.value = value;
+            updateDateLabel();
+            carnivoreDateModal.hidden = true;
+            carnivoreDateButton.focus();
+          });
+
+          datePickerDays.append(button);
+        }
+
+        document.getElementById("dateNextMonth").disabled =
+          calendarYear > todayParts[0] ||
+          (
+            calendarYear === todayParts[0] &&
+            calendarMonth >= todayParts[1] - 1
+          );
+      };
+
+      carnivoreDateButton.addEventListener("click",() => {
+        const selected =
+          (carnivoreStartedAt.value || tokyoToday)
+            .split("-")
+            .map(Number);
+
+        calendarYear = selected[0];
+        calendarMonth = selected[1] - 1;
+        renderCalendar();
+        carnivoreDateModal.hidden = false;
+      });
+
+      document.getElementById("datePrevMonth").addEventListener("click",() => {
+        calendarMonth -= 1;
+        if(calendarMonth < 0){calendarMonth = 11; calendarYear -= 1;}
+        renderCalendar();
+      });
+
+      document.getElementById("dateNextMonth").addEventListener("click",() => {
+        calendarMonth += 1;
+        if(calendarMonth > 11){calendarMonth = 0; calendarYear += 1;}
+        renderCalendar();
+      });
+
+      document.getElementById("datePickerClose").addEventListener("click",() => {
+        carnivoreDateModal.hidden = true;
+        carnivoreDateButton.focus();
+      });
+
+      carnivoreDateModal.addEventListener("click",event => {
+        if(event.target === carnivoreDateModal){
+          carnivoreDateModal.hidden = true;
+        }
+      });
+
+      updateDateLabel();
+
       const hero =
         document.getElementById(
           "heroSection"
@@ -1809,6 +2031,8 @@
           ){
             carnivoreStartedAt.value =
               tokyoToday;
+
+            updateDateLabel();
           }
 
           if(!isCarnivore){
