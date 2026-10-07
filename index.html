@@ -484,6 +484,33 @@
       background:#fdfdff;
     }
 
+    #carnivoreStartedAt{
+      width:100%;
+      min-height:48px;
+      padding:8px 12px;
+      color:var(--text);
+      background:#fff;
+      border:2px solid var(--accent-light);
+      border-radius:0;
+      outline:none;
+      font-family:inherit;
+      font-size:22px;
+      font-weight:500;
+      line-height:1.2;
+      text-align:center;
+      cursor:pointer;
+    }
+
+    #carnivoreStartedAt:focus{
+      border-color:var(--accent);
+      box-shadow:0 0 0 3px rgba(84,71,255,.12);
+    }
+
+    #carnivoreStartedAt::-webkit-date-and-time-value{
+      min-height:1.2em;
+      text-align:center;
+    }
+
     .inline-label{
       display:block;
 
@@ -1159,7 +1186,7 @@
             </label>
             <input id="carnivoreStartedAt" name="carnivoreStartedAt" type="date" />
             <div class="hint">
-              正確な日付じゃなくても大丈夫です。だいたい「この頃から始めた」という日付でOKです。
+              だいたい「この頃から始めた」という日付でOKです。
             </div>
           </div>
 
@@ -1775,6 +1802,14 @@
 
           carnivoreStartedAt.required =
             isCarnivore;
+
+          if(
+            isCarnivore &&
+            !carnivoreStartedAt.value
+          ){
+            carnivoreStartedAt.value =
+              tokyoToday;
+          }
 
           if(!isCarnivore){
             carnivoreStartedAt.value = "";
